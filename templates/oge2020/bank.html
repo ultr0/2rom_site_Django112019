@@ -1,122 +1,134 @@
 <style>
-hr {
-	width: 98%;
-    border: none; /* Убираем границу */
-    background-color: gray; /* Цвет линии */
-    color: white; /* Цвет линии для IE6-7 */
-    height: 3px; /* Толщина линии */
+    hr {
+        width: 98%;
+        border: none; /* Убираем границу */
+        background-color: gray; /* Цвет линии */
+        color: white; /* Цвет линии для IE6-7 */
+        height: 3px; /* Толщина линии */
     }
-	.tests {
-  text-decoration: none;
-  outline: none;
-  display: inline-block;
-  width: 140px;
-  height: 45px;
-  line-height: 45px;
-  border-radius: 45px;
-  margin: 10px 20px;
-  font-family:COMIC SANS MS;
-  font-size: 11px;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 3px;
-  font-weight: 600;
-  color: #6699cc;
-  background: white;
-  box-shadow: 0 8px 15px rgba(0,0,0,.1);
-  transition: .3s;
-}
-.tests:hover {
-  background: #8EC0D7;
-  color: white;
-  transform: translateY(-7px);
-}
-.varianty {
 
-		color:#fff;
-		font-family:COMIC SANS MS;
-		font-size:15px;
-		font-weight: bold;
-		text-shadow:0 1px 0 #c0c0c0;
-		padding:7px 0 8px 0;
-		margin:0;
-		cursor: pointer;
-		border:0;
-		border-top:1px solid #c0c0c0;
-		width: 120px;
-		border-radius: 2px; 
+    .tests {
+        text-decoration: none;
+        outline: none;
+        display: inline-block;
+        width: 140px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 45px;
+        margin: 10px 20px;
+        font-family: COMIC SANS MS;
+        font-size: 11px;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 3px;
+        font-weight: 600;
+        color: #6699cc;
+        background: white;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+        transition: .3s;
+    }
 
-		.varianty:hover{
-		background: white;
-		}}
-.arrow-7 {
-    margin: 30px;
-	
-}
-.arrow-7 span {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-bottom: 5px solid #337AB7;
-    border-right: 5px solid #337AB7;
-    transform: rotate(45deg);
-    margin: -16px;
-    animation: arrow-7 4s infinite;
-}
-.arrow-7 span:nth-child(2){
-    animation-delay: -0.2s;
-}
-.arrow-7 span:nth-child(3){
-    animation-delay: -0.4s;
-}
-@keyframes arrow-7 {
-    0%{
-        opacity: 0;
-        transform: rotate(45deg) translate(-20px,-20px);
+    .tests:hover {
+        background: #8EC0D7;
+        color: white;
+        transform: translateY(-7px);
     }
-    50%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-        transform: rotate(45deg) translate(20px,20px);
-    }
-}
 
-}
-</style>	
+    .varianty {
+
+        color: #fff;
+        font-family: COMIC SANS MS;
+        font-size: 15px;
+        font-weight: bold;
+        text-shadow: 0 1px 0 #c0c0c0;
+        padding: 7px 0 8px 0;
+        margin: 0;
+        cursor: pointer;
+        border: 0;
+        border-top: 1px solid #c0c0c0;
+        width: 120px;
+        border-radius: 2px;
+
+    .varianty:hover {
+        background: white;
+    }
+
+    }
+    .arrow-7 {
+        margin: 30px;
+
+    }
+
+    .arrow-7 span {
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-bottom: 5px solid #337AB7;
+        border-right: 5px solid #337AB7;
+        transform: rotate(45deg);
+        margin: -16px;
+        animation: arrow-7 4s infinite;
+    }
+
+    .arrow-7 span:nth-child(2) {
+        animation-delay: -0.2s;
+    }
+
+    .arrow-7 span:nth-child(3) {
+        animation-delay: -0.4s;
+    }
+
+    @keyframes arrow-7 {
+        0% {
+            opacity: 0;
+            transform: rotate(45deg) translate(-20px, -20px);
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: rotate(45deg) translate(20px, 20px);
+        }
+    }
+
+    }
+</style>
 {% extends "oge2020/base.html" %}
 
 
 {% block title %} Банк заданий {% endblock title %}
 {% block header %} Банк заданий {% endblock header %}
 
-{% block content%}
-<hr>
-<a style="position:absolute; left:30%"  href ="{% url 'exercises'%}"> <input class="tests" type="button" value="Упражнения"  > </a> 
-<a style="position:absolute; right:14%"  href ="{% url 'variants'%}"> <input class="tests" type="button" value="Варианты"  > </a> 
-<a style="position:absolute; right:35%; top:40%"  href ="{% url 'analysis'%}"> <input class="tests" type="button" value="Разбор"  > </a> 
+{% block content %}
+    <hr>
+    <a style="position:absolute; left:30%" href="{% url 'exercises' %}"> <input class="tests" type="button"
+                                                                                value="Упражнения"> </a>
+    <a style="position:absolute; right:14%" href="{% url 'variants' %}"> <input class="tests" type="button"
+                                                                                value="Варианты"> </a>
+    <a style="position:absolute; right:35%; top:40%" href="{% url 'analysis' %}"> <input class="tests" type="button"
+                                                                                         value="Разбор"> </a>
 
-<h3>Выберите нужный раздел</h3>
+    <h3>Выберите нужный раздел</h3>
 
-<div class="arrow-7" style="position:absolute; left:34.5%; top:40%">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<h3 style="position:absolute; left:25%; top:60%" >Тут вы можете пройти вариант целиком</h3>
-<div class="arrow-7" style="position:absolute; left:55.5%; top:50%">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<h3 style="position:absolute; left:46%; top:70%" >Тут вы можете посмотреть разбор всех заданий</h3>
-<div class="arrow-7" style="position:absolute; left:77%; top:40%">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<h3 style="position:absolute; left:70%; top:60%" >Тут вы можете прорешать отдельные задания</h3>
+    <div class="arrow-7" style="position:absolute; left:34.5%; top:40%">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h3 style="position:absolute; left:25%; top:60%">Тут вы можете пройти вариант целиком</h3>
+    <div class="arrow-7" style="position:absolute; left:55.5%; top:50%">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h3 style="position:absolute; left:46%; top:70%">Тут вы можете посмотреть разбор всех заданий</h3>
+    <div class="arrow-7" style="position:absolute; left:77%; top:40%">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h3 style="position:absolute; left:70%; top:60%">Тут вы можете прорешать отдельные задания</h3>
 
 
 {% endblock content %}

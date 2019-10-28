@@ -1,31 +1,31 @@
 {% extends "oge2020/base.html" %}
 
 
-{% block title %} Разбор тренировочных упражнений по теме {{object.id}} {% endblock title %}
-{% block header %} Разбор тренировочных упражнений по теме {{object.id}} : {{ object.name}} {% endblock header %}
+{% block title %} Разбор тренировочных упражнений по теме {{ object.id }} {% endblock title %}
+{% block header %} Разбор тренировочных упражнений по теме {{ object.id }} : {{ object.name }} {% endblock header %}
 
 {% block content %}
 
     {% if question_list %}
-    <ul>
+        <ul>
 
-      {% for test in question_list %}
-	  
-	  <li> 
-        <b>Вопрос: </b> {{test.question_text}} </li>
-        
-        <b>Решение: </b> отсутствует
-        
-        <b>Ответ: </b> {{test.question_answer}} 
-      <li>
-      
-	  <hr>
-      
-      {% endfor %}
+            {% for test in question_list %}
 
-    </ul>
+                <li>
+                    <b>Вопрос: </b> {{ test.question_text }} </li>
+
+                <b>Решение: </b> отсутствует
+
+                <b>Ответ: </b> {{ test.question_answer }}
+                <li>
+
+                <hr>
+
+            {% endfor %}
+
+        </ul>
     {% else %}
-      <p>В настоящее время нет теоретических материалов.</p>
-    {% endif %}   
+        <p>В настоящее время нет теоретических материалов.</p>
+    {% endif %}
 
 {% endblock %}

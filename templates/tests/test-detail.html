@@ -7,20 +7,20 @@
 
 {% block content %}
 
-<h1>Title: {{ object.id }}</h1>
+    <h1>Title: {{ object.id }}</h1>
 
-{% if object.type == 1 %}
-	<p>question = {{ object.question }}
+    {% if object.type == 1 %}
+        <p>question = {{ object.question }}
 
-{% elif object.type == 2%}
-	<p> Вариант 1: {{ object.answer1 }}
-	<p> Вариант 2: {{ object.answer2 }}
-	<p> Вариант 3: {{ object.answer3 }}
-	<p> Вариант 4: {{ object.answer4 }}
-{% else %}
+            {% elif object.type == 2 %}
+        <p> Вариант 1: {{ object.answer1 }}
+        <p> Вариант 2: {{ object.answer2 }}
+        <p> Вариант 3: {{ object.answer3 }}
+        <p> Вариант 4: {{ object.answer4 }}
+            {% else %}
 
-	<p> Другой тип вопроса
-{% endif %}
+        <p> Другой тип вопроса
+    {% endif %}
 
 {% endblock %}
 

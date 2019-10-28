@@ -1,33 +1,33 @@
 {% extends "oge2020/base.html" %}
 
-{% block title %} Вариант ОГЭ {{object.id}} {% endblock title %}
-{% block header %} Вариант ОГЭ {{object.id}} {% endblock header %}
+{% block title %} Вариант ОГЭ {{ object.id }} {% endblock title %}
+{% block header %} Вариант ОГЭ {{ object.id }} {% endblock header %}
 
 {% block content %}
 
-<p> Название варианта: {{variant_object.name}}
+    <p> Название варианта: {{ variant_object.name }}
 
-<br>
-<br>
+        <br>
+        <br>
 
 
-    {% if question_list %}
-    <ul>
+        {% if question_list %}
+            <ul>
 
-      {% for test in question_list %}
-	  
-	  <li> 
-        <b>Вопрос: </b> {{test.question_text}} </li>
-      <li>
-      
-	  <hr>
-      
-      {% endfor %}
+                {% for test in question_list %}
 
-    </ul>
-    {% else %}
-      <p>В настоящее время нет теоретических материалов.</p>
-    {% endif %}   
+                    <li>
+                        <b>Вопрос: </b> {{ test.question_text }} </li>
+                    <li>
+
+                    <hr>
+
+                {% endfor %}
+
+            </ul>
+        {% else %}
+            <p>В настоящее время нет теоретических материалов.</p>
+        {% endif %}
 
 
 

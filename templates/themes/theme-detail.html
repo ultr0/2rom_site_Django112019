@@ -1,67 +1,67 @@
 ﻿{% extends "oge2020/base.html" %}
 
-{% block title %} Тема {{object.number}}: {{ object.name }} {% endblock title %}
-{% block header %} Тема {{object.number}}: {{ object.name }} {% endblock header %}
+{% block title %} Тема {{ object.number }}: {{ object.name }} {% endblock title %}
+{% block header %} Тема {{ object.number }}: {{ object.name }} {% endblock header %}
 
 {% block content %}
-<style type="text/css">
-   .block1 {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 20px;
-        text-align: justify;
-    }
-</style> 
+    <style type="text/css">
+        .block1 {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            text-align: justify;
+        }
+    </style>
 
 
     <div class="block1">
-    
+
         <!-- content --->
-        <p>{{ object.content}}
-        
-        <!-- source --->
-        {% if object.source_name %}
-            <p align=left> 
-            <b> Источник: </b> {{object.source_name}}
-            {% if object.source_link %}
-                Ссылка: <a href = {{ object.source_link }} > {{ object.source_link }} </a>
+        <p>{{ object.content }}
+
+            <!-- source --->
+            {% if object.source_name %}
+                <p align=left>
+                <b> Источник: </b> {{ object.source_name }}
+                {% if object.source_link %}
+                    Ссылка: <a href={{ object.source_link }}> {{ object.source_link }} </a>
+                {% endif %}
             {% endif %}
-        {% endif %}
-        
-        <!-- references --->
-        <br>
-        <br>
-        <br>
-        {% if object.reference1_name or object.reference2_name or object.reference3_name%}
-            <h3> Дополнительные источники: </h3>
-        {% endif %}
-        
+
+            <!-- references --->
+            <br>
+            <br>
+            <br>
+            {% if object.reference1_name or object.reference2_name or object.reference3_name %}
+                <h3> Дополнительные источники: </h3>
+            {% endif %}
+
         <ol align=left>
             {% if object.reference1_name %}
-            <li>{{object.reference1_name}} 
+                <li>{{ object.reference1_name }}
                     {% if object.reference1_link %}
-                        Ссылка: <a href = {{ object.reference1_link }} > {{object.reference1_link}} </a>
+                        Ссылка: <a href={{ object.reference1_link }}> {{ object.reference1_link }} </a>
                     {% endif %}
-            </li>
+                </li>
             {% endif %}
-            
+
             {% if object.reference2_name %}
-            <li>{{object.reference2_name}} 
+                <li>{{ object.reference2_name }}
                     {% if object.reference2_link %}
-                        Ссылка: <a href = {{ object.reference2_link }} > {{object.reference2_link}} </a>
+                        Ссылка: <a href={{ object.reference2_link }}> {{ object.reference2_link }} </a>
                     {% endif %}
-            </li>
+                </li>
             {% endif %}
-            
+
             {% if object.reference3_name %}
-            <li>{{object.reference3_name}}
+                <li>{{ object.reference3_name }}
                     {% if object.reference3_link %}
-                        Ссылка: <a href = {{ object.reference3_link }} > {{object.reference3_link}} </a>
+                        Ссылка: <a href={{ object.reference3_link }}> {{ object.reference3_link }} </a>
                     {% endif %}
-            </li>
+                </li>
             {% endif %}
         </ol>
-        
+
         <!-- 
         <p>{{ object.author }}    
         <p>{{ object.created_date }}
@@ -69,12 +69,12 @@
         <p>
         -->
     </div>   <!-- block1 --->
-    
-    
+
+
     <br>
     <div class="block2">
-        <a href="../themes/"> Вернуться к списку тем </a> ||| 
-        <a href=""> Перейти к решению задач по теме {{object.number}} </a>
+        <a href="../themes/"> Вернуться к списку тем </a> |||
+        <a href=""> Перейти к решению задач по теме {{ object.number }} </a>
     </div>
-  
+
 {% endblock %}

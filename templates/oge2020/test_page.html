@@ -3,42 +3,42 @@
 {% block title %} Задача  {% endblock title %}
 {% block header %} Задача {% endblock header %}
 
-{% block content%}
+{% block content %}
 
-<div align="center">
-ЗАДАЧА
+    <div align="center">
+        ЗАДАЧА
 
-<br>
-Ex name: 
-<p> {{student_exercise.name}}
-<br>
-Ex Number:
-<p> {{student_exercise.number}}
+        <br>
+        Ex name:
+        <p> {{ student_exercise.name }}
+            <br>
+            Ex Number:
+        <p> {{ student_exercise.number }}
 
-<br>
-<hr>
-
-
+            <br>
+        <hr>
 
 
-{% if student_question %}
-    <ul>
 
-      {% for test in student_question %}
-	  
-	  <li> 
-        Вопрос: {{test.question_text}} </li>
-      <li>
-        Ответ: {{test.question_answer}}
-	  </li>	
-	  <hr>
-      
-      {% endfor %}
 
-    </ul>
-    {% else %}
-      <p>В настоящее время нет теоретических материалов.</p>
-    {% endif %}   
+        {% if student_question %}
+            <ul>
+
+                {% for test in student_question %}
+
+                    <li>
+                        Вопрос: {{ test.question_text }} </li>
+                    <li>
+                        Ответ: {{ test.question_answer }}
+                    </li>
+                    <hr>
+
+                {% endfor %}
+
+            </ul>
+        {% else %}
+            <p>В настоящее время нет теоретических материалов.</p>
+        {% endif %}
 
 
 

@@ -1,62 +1,68 @@
 <style>
-.tests {
-  text-decoration: none;
-  outline: none;
-  display: inline-block;
-  width: 180px;
-  height: 45px;
-  line-height: 45px;
-  border-radius: 45px;
-  margin: 10px 20px;
-  font-family:COMIC SANS MS;
-  font-size: 11px;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 3px;
-  font-weight: 600;
-  color: #6699cc;
-  background: white;
-  box-shadow: 0 8px 15px rgba(0,0,0,.1);
-  transition: .3s;
-}
-.tests:hover {
-  background: #8EC0D7;
-  color: white;
-  transform: translateY(-7px);
-  .arrow-7 {
-    margin: 30px;
-	
-}
-}
-.arrow-7 span {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-bottom: 5px solid #337AB7;
-    border-right: 5px solid #337AB7;
-    transform: rotate(45deg);
-    margin: -16px;
-    animation: arrow-7 4s infinite;
-}
-.arrow-7 span:nth-child(2){
-    animation-delay: -0.2s;
-}
-.arrow-7 span:nth-child(3){
-    animation-delay: -0.4s;
-}
-@keyframes arrow-7 {
-    0%{
-        opacity: 0;
-        transform: rotate(45deg) translate(-20px,-20px);
+    .tests {
+        text-decoration: none;
+        outline: none;
+        display: inline-block;
+        width: 180px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 45px;
+        margin: 10px 20px;
+        font-family: COMIC SANS MS;
+        font-size: 11px;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 3px;
+        font-weight: 600;
+        color: #6699cc;
+        background: white;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+        transition: .3s;
     }
-    50%{
-        opacity: 1;
+
+    .tests:hover {
+        background: #8EC0D7;
+        color: white;
+        transform: translateY(-7px);
+
+    .arrow-7 {
+        margin: 30px;
+
     }
-    100%{
-        opacity: 0;
-        transform: rotate(45deg) translate(20px,20px);
+
     }
-}
+    .arrow-7 span {
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-bottom: 5px solid #337AB7;
+        border-right: 5px solid #337AB7;
+        transform: rotate(45deg);
+        margin: -16px;
+        animation: arrow-7 4s infinite;
+    }
+
+    .arrow-7 span:nth-child(2) {
+        animation-delay: -0.2s;
+    }
+
+    .arrow-7 span:nth-child(3) {
+        animation-delay: -0.4s;
+    }
+
+    @keyframes arrow-7 {
+        0% {
+            opacity: 0;
+            transform: rotate(45deg) translate(-20px, -20px);
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: rotate(45deg) translate(20px, 20px);
+        }
+    }
 </style>
 {% extends "oge2020/base.html" %}
 
@@ -64,27 +70,27 @@
 {% block title %} Общая статистика пользователей {% endblock title %}
 {% block header %} Общая статистика пользователей {% endblock header %}
 
-{% block content%}
-<p>
-<p>
-<p> Общая статистика пользователей пока недоступна.</p>
+{% block content %}
+    <p>
+    <p>
+    <p> Общая статистика пользователей пока недоступна.</p>
 
-<!--
-<hr>
-<a style="position:absolute; left:30%"  href ="/allstatistics.html"> <input class="tests" type="button" value="Общая статистика"  > </a> 
-<div class="arrow-7" style="position:absolute; left:38.5%; top:45%">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<h3 style="position:absolute; left:28%; top:60%" >Здесь находится общая статистика</h3>
-<a style="position:absolute; right:14%"  href ="/mystatistics.html"> <input class="tests" type="button" value="Моя статистика"  > </a> 
-<div class="arrow-7" style="position:absolute; left:78%; top:45%">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<h3 style="position:absolute; left:68%; top:60%" >Здесь находится ваша личная статистика</h3>
---->
+    <!--
+    <hr>
+    <a style="position:absolute; left:30%"  href ="/allstatistics.html"> <input class="tests" type="button" value="Общая статистика"  > </a>
+    <div class="arrow-7" style="position:absolute; left:38.5%; top:45%">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h3 style="position:absolute; left:28%; top:60%" >Здесь находится общая статистика</h3>
+    <a style="position:absolute; right:14%"  href ="/mystatistics.html"> <input class="tests" type="button" value="Моя статистика"  > </a>
+    <div class="arrow-7" style="position:absolute; left:78%; top:45%">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h3 style="position:absolute; left:68%; top:60%" >Здесь находится ваша личная статистика</h3>
+    --->
 
 {% endblock content %}

@@ -97,7 +97,9 @@ class Journal(BaseModel):
     """
     timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Время ответа')
     question  = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Вопрос')
-    answer = models.TextField()
+    correct = models.BooleanField(verbose_name='Верный ответ', default=False)
+    answer = models.TextField(verbose_name='Ответ', null=True, blank=True)
+    answer_document = models.FileField(verbose_name='Документ для проверки', null=True, blank=True)
     number_questions_in_variant = models.IntegerField(verbose_name='Количество всех вопросов в варианте на момент сдачи')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

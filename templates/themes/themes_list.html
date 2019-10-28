@@ -1,0 +1,69 @@
+{% extends "oge2020/base.html" %}
+
+{% block content %}
+<style>
+.a {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  color:white;
+  padding: 3px 10px;
+  margin: 5px 10px;
+  border-radius: 10px;
+  font-family: COMIC SANS MS;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0,0,0,.1);
+  transition: .5s;
+}
+
+.a:hover {background-position: right center;}
+
+ol li{
+		text-align:left;
+		font-family: 'COMIC SANS MS';
+		font-size: 20px;
+	}
+	hr 
+	{
+	width: 98%;
+    border: none; /* Убираем границу */
+    background-color: #a9a9a9; /* Цвет линии */
+    color: blue; /* Цвет линии для IE6-7 */
+    height: 3px; /* Толщина линии */
+    }
+
+</style>
+
+
+	<h3 style="color:black" face="COMIC SANS MS"> Темы: </h3>
+	<ol> <font size="4" color="black" face="COMIC SANS MS" >
+
+	{% if object_list %}
+    <ul>
+
+      {% for theme in object_list %}
+	  
+	  <li> 
+			<font size="4" color="black" face="COMIC SANS MS" > 
+			{{ theme.number }} . {{theme.name}} </font> 
+			<a style="position:absolute; right:5%"  href ="{% url 'theme-detail' theme.number %}"> 
+				<input class="a" type="button" value="Пройти"  > </a> 
+	  </li>	
+	  <hr>
+	  
+	  <!--
+      <li>
+        <a href="{% url 'theme-detail' theme.number %}">{{ theme.number }}</a> {{theme.author}}
+      </li>
+	  --->
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В настоящее время нет теоретических материалов.</p>
+    {% endif %}   
+        
+{% endblock %}

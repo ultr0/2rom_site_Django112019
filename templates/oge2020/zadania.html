@@ -1,0 +1,34 @@
+{% extends "oge2020/base.html" %}
+
+{% block title %}THEORY{% endblock title %}
+{% block header %}Теория{% endblock header %}
+
+{% block content%}
+
+<div align="center">
+bank
+</div>
+
+
+
+{% for test in tests %}
+<div>
+<h3>Вопрос № {{test.theme_number}}</h3>
+</div>
+
+<p>
+<div align="left">
+<h3>{{ test.question }}</h3>
+<ol >
+<li style="color:black"> {{ test.answer1 }} </li>
+<li style="color:black"> {{ test.answer2 }} </li>
+<li style="color:black"> {{ test.answer3 }} </li>
+<li style="color:black"> {{ test.answer4 }} </li>
+</ol>
+</div>
+{% endfor %}
+
+
+
+
+{% endblock content %}

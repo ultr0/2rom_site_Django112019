@@ -1,0 +1,88 @@
+{% extends "oge2020/base.html" %}
+
+{% block title %}THEORY{% endblock title %}
+{% block header %}Теория{% endblock header %}
+
+{% block content%}
+<style>
+.a {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  color:white;
+  padding: 3px 10px;
+  margin: 5px 10px;
+  border-radius: 10px;
+  font-family: COMIC SANS MS;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0,0,0,.1);
+  transition: .5s;
+}
+
+.a:hover {background-position: right center;}
+
+ol li{
+		text-align:left;
+		font-family: 'COMIC SANS MS';
+		font-size: 20px;
+	}
+	hr 
+	{
+	width: 98%;
+    border: none; /* Убираем границу */
+    background-color: #a9a9a9; /* Цвет линии */
+    color: blue; /* Цвет линии для IE6-7 */
+    height: 3px; /* Толщина линии */
+    }
+
+</style>
+
+<h3 style="color:black" face="COMIC SANS MS"> Темы: </h3>
+<ol> <font size="4" color="black" face="COMIC SANS MS" >
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Объём памяти, необходимый для хранения текстовых данных </font> <a style="position:absolute; right:5%"  href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Декодирование кодовой последовательности </font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Истинность составного высказывания </font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Анализ простейших моделей объектов </font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Анализ простых алгоритмов для конкретного исполнителя с фиксированным набором команд </font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Формальное исполнение алгоритмов, записанных на языке программирования </font> <a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Принципы адресации в сети Интернет </font> <a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Принципы поиска информации в Интернете </font> <a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Анализ информации, представленной в виде схем </font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Запись чисел в различных системах счисления </font> <a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Поиск информации в файлах и каталогах компьютера </font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="3" color="black" face="COMIC SANS MS" > Определение количества и информационного объёма файлов, отобранных по некоторому условию</font> <a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+	<hr>
+	<li> <font size="3" color="black" face="COMIC SANS MS" > Создание презентаций (вариант задания 13.1) или создание текстового документа (вариант задания 13.2)</font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="4" color="black" face="COMIC SANS MS" > Обработка большого массива данных с использованием средств электронной таблицы</font><a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a> </li>	
+	<hr>
+	<li> <font size="3" color="black" face="COMIC SANS MS" > Создание и выполнение программы для заданного исполнителя (вариант задания 15.1) или на универсальном языке программирования (вариант задания 15.2)</font> <a style="position:absolute; right:5%" href ="/text.html"> <input class="a" type="button" value="Пройти"  > </a></li>	
+
+	</font>
+</ol>
+
+	
+ 
+
+		
+
+
+
+
+
+
+{% endblock content %}

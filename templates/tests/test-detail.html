@@ -1,0 +1,28 @@
+{% extends "oge2020/base.html" %}
+
+{% block title %}Тесты{% endblock title %}
+{% block header %}Тест {% endblock header %}
+
+
+
+{% block content %}
+
+<h1>Title: {{ object.id }}</h1>
+
+{% if object.type == 1 %}
+	<p>question = {{ object.question }}
+
+{% elif object.type == 2%}
+	<p> Вариант 1: {{ object.answer1 }}
+	<p> Вариант 2: {{ object.answer2 }}
+	<p> Вариант 3: {{ object.answer3 }}
+	<p> Вариант 4: {{ object.answer4 }}
+{% else %}
+
+	<p> Другой тип вопроса
+{% endif %}
+
+{% endblock %}
+
+
+

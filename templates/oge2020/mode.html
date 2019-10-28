@@ -1,0 +1,47 @@
+<style>
+.tests {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  width: 100px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 45px;
+  margin: 10px 20px;
+  font-family:COMIC SANS MS;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #6699cc;
+  background: white;
+  box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  transition: .3s;
+}
+.tests:hover {
+  background: #8EC0D7;
+  color: white;
+  transform: translateY(-7px);
+  .arrow-7 {
+    margin: 30px;
+	
+}
+}
+</style>
+{% extends "oge2020/base.html" %}
+
+
+{% block title %} Режим обучения {% endblock title %}
+{% block header %} Выбор режима обучения {% endblock header %}
+
+{% block content%}
+<h3 align="center" >В данном разделе вы сможете составить индивидуальный план и график процесса подготовки </h3>
+<h2 align="center">Выберите режим подготовки:</h2>
+<form action="handler.php">
+    <h3><p><input name="dzen" type="radio" value="intensive"> Интенсивная(4 раза в неделю,обязательно решить 2 вариант в неделю )</p></h3>
+	<h3><p><input name="dzen" type="radio" value="middle"> Средняя(2 раза в неделю,обязательно решить 1 варианта в неделю)</p></h3>
+    <h3><p><input name="dzen" type="radio" value="olimpiada">Подготовка с улубленным изучением(4 раза в неделю с олимпиадными задачами, обязательно прешить 2 варианта в неделю)</p></h3>
+    <p><input type="submit" class="tests" value="Выбрать"></p>
+  </form> 
+{% endblock content %}

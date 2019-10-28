@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <style>
+    .alert{color:red}
+    .form-group{margin: 10px 0;}
+    .form-group input{width:250px;height: 25px;border-radius:10px;}
+	
+	#leftcol { /* Левая колонка */
+				float: left; /* Обтекание справа */
+				width: 200px; /* Ширина колонки */
+				
+	}
+	#rightcol { /* Правая колонка */
+			margin-left: 220px; /* Отступ слева */
+	}
+	hr {
+	width: 98%;
+    border: none; /* Убираем границу */
+    background-color: gray; /* Цвет линии */
+    color: white; /* Цвет линии для IE6-7 */
+    height: 3px; /* Толщина линии */
+    }
+	#menu {
+		width: 250px; /* Ширина слоя */
+		height: 300px;
+        margin: 0 auto;
+		text-align:left;
+		font-family: COMIC SANS MS;
+		font-size: 20px;
+		color:gray;
+		
+	}
+	
+	#content_container {
+	    width: 90%; /* Ширина слоя */
+        margin: 0 auto; /* Выравнивание по центру */
+        /* Цвет фона левой колонки */
+		min-height: 600px;
+		text-align:center;
+		font-family: COMIC SANS MS;
+		font-size: 12px;
+		border: 3px solid gray; /* Белая рамка */
+        border-radius: 15px; /* Радиус скругления */
+	}
+	
+	#footer {
+	    width: 100%; /* Ширина слоя */
+        margin: 0 auto; /* Выравнивание по центру */
+		min-height: 80px;
+		text-align:center;
+		font-family: Arial;
+		font-size: 10px;
+	}
+	
+	 .great_btn {
+		color:#fff;
+		font-size:17px;
+		font-weight: bold;
+		text-shadow:0 1px 0 #757575;
+		padding:7px 0 8px 0;
+		margin:0;
+		cursor: pointer;
+		border:0;
+		border-top:1px solid #0066cc;
+		width: 120px;
+		border-radius: 2px; 
+
+		/* gradient */ 
+		background: #ffccff;
+		background: -moz-linear-gradient(top, #0066cc 0%, #99ccff 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0066cc), color-stop(100%,#99ccff));
+		background: -webkit-linear-gradient(top, #0066cc 0%,99ccff# 100%);
+		background: -o-linear-gradient(top, #0066cc 0%,#99ccff 100%);
+		background: -ms-linear-gradient(top, #0066cc 0%,#99ccff 100%);
+		background: linear-gradient(to bottom, #0066cc 0%,#99ccff 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0066cc', endColorstr='#99ccff',GradientType=0 ); 
+		/* gradient end */
+		}
+
+		.great_btn:hover{
+		background: #0066cc;
+		}
+
+		.great_btn_around{
+		box-shadow:0 1px 0 #fff;
+		border-radius: 3px;
+		border:1px solid #99ccff;
+		width: 120px;
+		box-shadow: 0px 1px 3px #eee;
+		}
+	ul li{
+		list-style: none; 
+		background: url(C:\sites\markery.jpg) no-repeat left 50%; 
+		padding-left: 25px;
+    }
+body {background:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7bfe3d63548097.5ab3fbc86e436.jpg)}
+.s {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  padding: 12px 40px;
+  margin: 10px 20px;
+  border-radius: 30px;
+  background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+  background-position: 100% 0;
+  background-size: 200% 200%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: white;
+  box-shadow: 0 16px 32px 0 rgba(0,40,120,.35);
+  transition: .5s;
+  font-family: COMIC SANS MS;
+}
+.s:hover {
+  box-shadow: 0 0 0 0 rgba(0,40,120,0);
+  background-position: 0 0;
+}
+.varianty {
+
+		color:#fff;
+		font-family:COMIC SANS MS;
+		font-size:15px;
+		font-weight: bold;
+		text-shadow:0 1px 0 #c0c0c0;
+		padding:7px 0 8px 0;
+		margin:0;
+		cursor: pointer;
+		border:0;
+		border-top:1px solid #c0c0c0;
+		width: 120px;
+		border-radius: 2px; 
+
+		.varianty:hover{
+		background: white;
+		}
+    </style>
+
+    <style type="text/css">
+   .block_profile { 
+    width: 200px; 
+    background: #ccc;
+    padding: 10px;
+    border: solid 1px black; 
+    float: left;
+   }
+   .block_profile2 { 
+    width: 200px; 
+    background: #fc0; 
+    padding: 5px; 
+    border: solid 1px black; 
+    float: left; 
+    position: relative; 
+    top: 40px; 
+    left: -70px; 
+   }
+  </style> 
+    
+    </head>
+
+<body class="container" >
+
+    <!-- HEADER -->
+		<h1 align="center" style="color:gray" > <a href ="{% url 'index'%}"> ОГЭ-2020 </a></h1>
+		<h5 align="center" style="color:gray">Быстро и легко! </h5>
+		<div style="position:absolute; top:4%;  left:89%" class="great_btn_around">
+			<a href ="/enter.html" > <input class="varianty" type="button" value="Личный кабинет"  > </a>
+			<a href="./"  ><input class="varianty" type="button" value="Главная" > </a>
+		</div>
+		<hr>
+	
+	
+	<div id="leftcol">
+	    <div id="menu">
+			<ul >
+				<li > 
+                    <div style="position:absolute; top:20%;  left:3.5%" >
+                        <a href ="{% url 'themes'%}"> <input class="s" type="button" value="Теория"> </a>
+					</div>  
+				</li>	
+				<li >  
+                    <div style="position:absolute; top:30%;  left:1%" >
+                        <a href ="{% url 'bank'%}"> <input class="s" type="button" value="Банк заданий"  > </a>
+                    </div>
+				</li>
+				<!--
+                <li > 
+                    <div style="position:absolute; top:40%;  left:0.5%" >
+                        <a href ="/variants/"> <input class="s" type="button" value="Банк вариантов"  > </a>
+					</div>  
+				</li>
+				--->
+				<li >  
+                    <div style="position:absolute; top:40%;  left:2%" >
+                        <a href ="{% url 'statistics'%}"> <input class="s" type="button" value="Статистика"  > </a>
+                    </div>
+				</li>	
+				
+			<!--	
+				
+			--->
+				
+			</ul>
+		</div>
+	</div>
+    
+<!--
+	<div id="leftcol" style="position:absolute; top:60%; bottom: 0.1%">
+	    <div id="menu">
+			<h3 > Профиль: </h3>
+				<ul class="sidebar-nav">
+					{% if user.is_authenticated %}
+						<li>User: {{ user.get_username }}</li>
+						<li>Name: {{ user.first_name }}</li>
+						<li>surname: {{ user.last_name }}</li>
+						<li>email: {{ user.email }}</li>
+						<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+					{% else %}
+						<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+					{% endif %} 
+			   </ul>
+		</div>
+	</div>
+--->
+
+    
+    
+    <div id="leftcol" style="position:absolute; top:55%; bottom: 0.1%">
+        <hr>
+        <div class="block_profile">
+            <b>Личный кабинет </b>
+            {% if user.is_authenticated %}
+            <p>Добрый день, {{user.get_username}}!
+            <ul class="sidebar-nav">
+                <li> <a href = "{% url 'profile'%}" > Мой профиль </a> </li>
+                <li> <a href = "{% url 'mode'%}" > Режим подготовки </a> </li>
+                <li> <a href = "{% url 'mystatistics'%}" > Моя статистика </a> </li>
+                <li> <a href = "{% url 'logout'%}?next={{request.path}}"> Выйти </a> </li>   
+            {% else %}
+            
+                
+                <li> <a href = "/register/?next={{request.path}}"> Регистрация </a> </li>
+                
+                <li> <a href = "{% url 'login'%}?next={{request.path}}"> Войти </a> </li>
+            </ul>
+            {% endif %} 
+
+        </div>
+    </div>
+	<!-- END of HEADER -->
+	
+	
+	<!-- CONTENT  -->
+    <div id="rightcol">
+	
+	<div id="content_container">
+	
+	    <h1>{% block header %}{% endblock header %}</h1>
+		
+		<div>{% block content%}{% endblock content %}</div>
+	
+	</div>
+		
+	</div>
+	
+	<p>
+	<!-- FOOTER -->
+	<div id="footer">
+	ОГЭ-2020. Все права защищены.
+	контакты:89032382923
+	</div>
+	<!-- END OF FOOTER -->
+	
+	
+</body>
+</html>

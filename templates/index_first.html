@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ОГЭ - 2020</title>
+    <style>
+    .alert{color:red}
+    .form-group{margin: 10px 0;}
+    .form-group input{width:250px;height: 25px;border-radius:10px;}
+	
+	#leftcol { /* Левая колонка */
+				float: left; /* Обтекание справа */
+				width: 200px; /* Ширина колонки */
+	}
+	#rightcol { /* Правая колонка */
+			margin-left: 220px; /* Отступ слева */
+	}
+	hr {
+	width: 98%;
+    border: none; /* Убираем границу */
+    background-color: blue; /* Цвет линии */
+    color: blue; /* Цвет линии для IE6-7 */
+    height: 4px; /* Толщина линии */
+    }
+	#menu {
+		width: 160px; /* Ширина слоя */
+		height: 250px;
+        margin: 0 auto; /* Выравнивание по центру */
+        background: #0099ff; /* Цвет фона левой колонки */
+		text-align:left;
+		font-family: Arial;
+		font-size: 12px;
+	}
+	
+	#content_container {
+	    width: 90%; /* Ширина слоя */
+        margin: 0 auto; /* Выравнивание по центру */
+        background: #FFFFFF; /* Цвет фона левой колонки */
+		min-height: 600px;
+		text-align:left;
+		font-family: Arial;
+		font-size: 12px;
+	}
+	
+	#footer {
+	    width: 100%; /* Ширина слоя */
+        margin: 0 auto; /* Выравнивание по центру */
+        background: #0099ff; /* Цвет фона левой колонки */
+		min-height: 80px;
+		text-align:center;
+		font-family: Arial;
+		font-size: 10px;
+	}
+	
+	
+    </style>
+</head>
+<body class="container" bgcolor="#00ccff">
+
+    <!-- HEADER -->
+	
+    <h1 align="center">  ОГЭ - 2020 </h1>
+	<hr>
+	
+	<div id="leftcol">
+	    <div id="menu">
+			<h3> Разделы: </h3>
+			<ol>
+				<li>  <a href="/theory.html">ТЕОРИЯ</a> </li>	
+				<li>БАНК ЗАДАНИЙ</li>
+				<li>СТАТИСТИКА</li>
+			</ol>
+		</div>
+	</div>
+	
+	<!-- END of HEADER -->
+	
+	
+	<!-- CONTENT  -->
+    <div id="rightcol">
+	
+	<div id="content_container">
+	
+		<form method="POST" novalidate>
+			{% csrf_token %}
+			<div>
+			{% for field in form %}
+			<div class="form-group">
+				{{field.label_tag}}
+				<div>{{field}}</div>
+				{% if field.errors%}
+				{% for error in field.errors %}
+				<div class="alert alert-danger">
+					{{error}}
+				</div>
+				{% endfor %}
+				{% endif %}
+			 
+			</div>
+			{% endfor %}
+			</div>
+			<input type="submit" value="Send" >  
+		</form>
+		
+	</div>
+		
+	</div>
+	
+	<p>
+	<!-- FOOTER -->
+	<div id="footer">
+	ОГЭ-2020. Все права защищены.
+	</div>
+	<!-- END OF FOOTER -->
+	
+	
+</body>
+</html>

@@ -1,0 +1,146 @@
+<style>
+	.tests {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  width: 140px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 45px;
+  margin: 10px 20px;
+  font-family:COMIC SANS MS;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #6699cc;
+  background: white;
+  box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  transition: .3s;
+}
+.tests:hover {
+  background: #8EC0D7;
+  color: white;
+  transform: translateY(-7px);
+}
+</style>
+{% extends "oge2020/base.html" %}
+
+{% block title %} Тренировочные упражнения по теме {{object.id}} {% endblock title %}
+{% block header %} Тренировочные упражнения по теме {{object.id}} : {{ object.name}} {% endblock header %}
+
+{% block content %}
+
+<p> Название варианта: {{exercise_object.name}}
+
+<br>
+<br>
+
+
+<!--
+<p><label for="id_message">Message:</label>
+    <input type="text" name="message" id="id_message" /></p>
+<p><label for="id_sender">Sender:</label>
+    <input type="text" name="sender" id="id_sender" /></p>
+<p><label for="id_cc_myself">Cc myself:</label>
+    <input type="checkbox" name="cc_myself" id="id_cc_myself" /></p>
+--->
+
+    
+
+    {% if question_list %}
+    
+    <form action="../exercise_result/" method="post">
+    {% csrf_token %}
+    <ul>
+
+      {% for test in question_list %}
+	  
+	  <li> 
+        <b>Вопрос: </b> {{test.question_text}} 
+        <br>
+        
+            <p><label for="id_answer"><b>Ваш ответ: </b></label>
+            <input id="id_answer" type="text" name="answer" maxlength="100" /></p>
+            
+         
+        
+
+        
+      </li>
+      <li>
+      
+	  <hr>
+      
+      {% endfor %}
+
+       </ul>
+       <input type="submit" value="Submit" />
+      </form>
+        
+    {% else %}
+      <p>В настоящее время нет теоретических материалов.</p>
+    {% endif %}   
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--
+	
+	
+	<a  style="position:absolute; left:25%; top:45%" href ="/zadanie/1"> <input class="varianty" type="button" value="1 задание"  > </a> 
+ <a  style="position:absolute; left:35%; top:45%" href ="/zadanie/2"> <input class="varianty" type="button" value="2 задание"  > </a> 
+ <a  style="position:absolute; left:45%; top:45%" href ="/zadanie/3"> <input class="varianty" type="button" value="3 задание"  > </a> 
+ <a  style="position:absolute; left:55%; top:45%" href ="/zadanie/4"> <input class="varianty" type="button" value="4 задание"  > </a>  
+ <a  style="position:absolute; left:65%; top:45%" href ="/zadanie/5"> <input class="varianty" type="button" value="5 задание"  > </a>  
+ <a  style="position:absolute; left:75%; top:45%" href ="/zadanie/6"> <input class="varianty" type="button" value="6 задание"  > </a> 
+ <a  style="position:absolute; left:85%; top:45%" href ="/zadanie/7"> <input class="varianty" type="button" value="7 задание"  > </a> 
+ <a  style="position:absolute; left:25%; top:54%" href ="/zadanie/8"> <input class="varianty" type="button" value="8 задание"  > </a> 
+ <a  style="position:absolute; left:35%; top:54%" href ="/zadanie/9"> <input class="varianty" type="button" value="9 задание"  > </a> 
+ <a  style="position:absolute; left:45%; top:54%" href ="/zadanie/10"> <input class="varianty" type="button" value="10 задание"  > </a>  
+ <a  style="position:absolute; left:55%; top:54%" href ="/zadanie/11"> <input class="varianty" type="button" value="11 задание"  > </a>  
+ <a  style="position:absolute; left:65%; top:54%" href ="/zadanie/12"> <input class="varianty" type="button" value="12 задание"  > </a> 
+ <a  style="position:absolute; left:75%; top:54%" href ="/zadanie/13"> <input class="varianty" type="button" value="13 задание"  > </a> 
+ <a  style="position:absolute; left:85%; top:54%" href ="/zadanie/14"> <input class="varianty" type="button" value="14 задание"  > </a> 
+ <a  style="position:absolute; left:25%; top:63%" href ="/zadanie/15"> <input class="varianty" type="button" value="15 задание"  > </a> 
+--->
+	
+<!--
+	<h3> Вариант {{ object.variant}}</h3>
+---->
+
+
+<!--
+{% if object.type1 == 1  %}
+    <form action="/team_name_url/" method="post">
+    <label for="team_name">Введите число</label>
+    <input id="object.answer_self1" type="text" name="name_field" >
+    
+</form>
+{% elif object.type1 == 2 %}
+    <form action="/team_name_url/" method="post">
+    <label for="team_name">Введите слово </label>
+    <input id="object.answer_self1" type="text" name="name_field" >
+    
+</form>
+{% elif object.type1 == 3%}
+	<form enctype="multipart/form-data" method="post">
+	<p><input type="file" name="f">
+	<input type="submit" value="Отправить"></p>
+ </form> 
+{% endif %}
+--->
+
+{% endblock %}

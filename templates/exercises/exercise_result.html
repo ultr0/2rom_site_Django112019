@@ -1,0 +1,47 @@
+<style>
+	.tests {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  width: 140px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 45px;
+  margin: 10px 20px;
+  font-family:COMIC SANS MS;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #6699cc;
+  background: white;
+  box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  transition: .3s;
+}
+.tests:hover {
+  background: #8EC0D7;
+  color: white;
+  transform: translateY(-7px);
+}
+</style>
+{% extends "oge2020/base.html" %}
+
+{% block title %} Результаты выполнения упражнений {{object.id}} {% endblock title %}
+{% block header %} Результаты выполнения упражнений {{object.id}} : {{ object.name}} {% endblock header %}
+
+{% block content %}
+
+<p> Вы решили все задачи упражнения!!!
+
+Вот Ваши результаты теста:
+<br>
+Номер упражнения: {{obj.ex_id}}
+<br>
+Ваш Ответ: {{object.answ}}
+<br>
+Ваше имя: {{object.student_name}}
+
+
+
+{% endblock %}

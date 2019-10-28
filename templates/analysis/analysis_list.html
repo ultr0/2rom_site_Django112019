@@ -1,0 +1,107 @@
+<style>
+hr {
+	width: 98%;
+    border: none; /* Убираем границу */
+    background-color: gray; /* Цвет линии */
+    color: white; /* Цвет линии для IE6-7 */
+    height: 3px; /* Толщина линии */
+    }
+
+.tests {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  width: 140px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 45px;
+  margin: 10px 20px;
+  font-family:COMIC SANS MS;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #6699cc;
+  background: white;
+  box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  transition: .3s;
+}
+.tests:hover {
+  background: #8EC0D7;
+  color: white;
+  transform: translateY(-7px);
+}
+.varianty {
+
+		color:#fff;
+		font-family:COMIC SANS MS;
+		font-size:15px;
+		font-weight: bold;
+		text-shadow:0 1px 0 #c0c0c0;
+		padding:7px 0 8px 0;
+		margin:0;
+		cursor: pointer;
+		border:0;
+		border-top:1px solid #c0c0c0;
+		width: 120px;
+		border-radius: 2px; 
+
+		.varianty:hover{
+		background: white;
+		}
+
+		
+</style>	
+{% extends "oge2020/base.html" %}
+
+
+{% block title %}THEORY{% endblock title %}
+{% block header %}Банк заданий{% endblock header %}
+
+{% block content%}
+<hr>
+<!--
+<a style="position:absolute; left:30%"  href ="/variants/"> <input class="tests" type="button" value="Варианты"  > </a> 
+<a style="position:absolute; right:14%"  href ="/exercises/"> <input class="tests" type="button" value="Задания"  > </a> 
+--->
+<h3>Выберите разбор задания</h3>
+<h4>В данном разделе вы можете посмотреть разбор и ответы к заданиям</h4>
+
+ {% if object_list %}
+    <ul>
+
+		{% for exercise in object_list %}
+			<li> Разбор упражнений по теме {{exercise.id}}: {{exercise.name}}
+			<a href ="{% url 'analise-detail' exercise.id %}"> <input class="varianty" type="button" value="Решения"  > </a> 
+			</li>	
+			<hr>
+			{% endfor %}
+
+	</ul>
+    {% else %}
+      <p> В настоящее время нет треннировочных упражнений в базе данных.</p>
+    {% endif %}   
+
+<!--
+ <a  style="position:absolute; left:25%; top:45%" href ="/exercise/1"> <input class="varianty" type="button" value="1 задание"  > </a> 
+ <a  style="position:absolute; left:35%; top:45%" href ="/exercise/2"> <input class="varianty" type="button" value="2 задание"  > </a> 
+ <a  style="position:absolute; left:45%; top:45%" href ="/exercise/3"> <input class="varianty" type="button" value="3 задание"  > </a> 
+ <a  style="position:absolute; left:55%; top:45%" href ="/exercise/4"> <input class="varianty" type="button" value="4 задание"  > </a>  
+ <a  style="position:absolute; left:65%; top:45%" href ="/exercise/5"> <input class="varianty" type="button" value="5 задание"  > </a>  
+ <a  style="position:absolute; left:75%; top:45%" href ="/exercise/6"> <input class="varianty" type="button" value="6 задание"  > </a> 
+ <a  style="position:absolute; left:85%; top:45%" href ="/exercise/7"> <input class="varianty" type="button" value="7 задание"  > </a> 
+ <a  style="position:absolute; left:25%; top:54%" href ="/exercise/8"> <input class="varianty" type="button" value="8 задание"  > </a> 
+ <a  style="position:absolute; left:35%; top:54%" href ="/exercise/9"> <input class="varianty" type="button" value="9 задание"  > </a> 
+ <a  style="position:absolute; left:45%; top:54%" href ="/exercise/10"> <input class="varianty" type="button" value="10 задание"  > </a>  
+ <a  style="position:absolute; left:55%; top:54%" href ="/exercise/11"> <input class="varianty" type="button" value="11 задание"  > </a>  
+ <a  style="position:absolute; left:65%; top:54%" href ="/exercise/12"> <input class="varianty" type="button" value="12 задание"  > </a> 
+ <a  style="position:absolute; left:75%; top:54%" href ="/exercise/13"> <input class="varianty" type="button" value="13 задание"  > </a> 
+ <a  style="position:absolute; left:85%; top:54%" href ="/exercise/14"> <input class="varianty" type="button" value="14 задание"  > </a> 
+ <a  style="position:absolute; left:25%; top:63%" href ="/exercise/15"> <input class="varianty" type="button" value="15 задание"  > </a> 
+ <a  style="position:absolute; left:35%; top:63%" href ="/exercise/16"> <input class="varianty" type="button" value="Олимпиада"  > </a> 
+
+--->
+
+
+{% endblock content %}

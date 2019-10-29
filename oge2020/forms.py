@@ -2,15 +2,30 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 # from oge2020.models import User
-from django.forms import HiddenInput, modelformset_factory
+from django.forms import HiddenInput, modelformset_factory, RadioSelect
 
 from oge2020 import models
-from oge2020.models import Journal
+from oge2020.models import Mode
 
 
 class UserForm(forms.Form):
     name = forms.CharField(min_length=3)
     age = forms.IntegerField(min_value=1, max_value=100)
+
+
+class EduMode(forms.ModelForm):
+    """
+    Класс определяющий интенсивность обучения пользователя на основе модели Mode
+    """
+
+    class Meta:
+        model = Mode
+        fields = ['mode']
+        exclude = ['user']
+        widgets = {
+            'mode': RadioSelect()
+        }
+
 
 #
 # class TestAnswerForm(forms.Form):

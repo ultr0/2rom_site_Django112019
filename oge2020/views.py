@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views import generic
-from .forms import profileForm
+from .forms import profileForm, EduMode
 from django.http import JsonResponse
 
 
@@ -17,7 +17,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import FormView
 
 #from .models import Zadania
-from .models import Theme, Journal
+from .models import Theme, Journal, Mode
 from .models import Variant
 from .models import Exercise
 from .models import Question
@@ -64,7 +64,28 @@ def profile(request):
     return render(request, 'oge2020/profile.html', {'form': form})
 
 def mode(request):
-    return render(request, 'oge2020/mode.html')
+    """
+    Функция отвечает за назначения режима, для изучения
+    :param request:
+    :return:
+    """
+    if request.method == "GET":
+        form = EduMode()
+    elif request.method == "POST":
+        form = EduMode(request.POST or None)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.user = request.user
+            if len(Mode.objects.filter(user=request.user)) == 0:
+                f.save(form.cleaned_data)
+            else:
+                config = Mode.objects.filter(user=request.user).first
+                config.mode = f.mode
+                config.save()
+
+
+
+    return render(request, 'oge2020/mode.html', {'form':form})
 
 def mystatistics(request):
     journal_theme_array = []

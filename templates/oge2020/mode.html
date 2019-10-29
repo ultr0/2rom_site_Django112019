@@ -41,13 +41,8 @@
 {% block content %}
     <h3 align="center">В данном разделе вы сможете составить индивидуальный план и график процесса подготовки </h3>
     <h2 align="center">Выберите режим подготовки:</h2>
-    <form action="handler.php">
-        <h3><p><input name="dzen" type="radio" value="intensive"> Интенсивная(4 раза в неделю,обязательно решить 2
-            вариант в неделю )</p></h3>
-        <h3><p><input name="dzen" type="radio" value="middle"> Средняя(2 раза в неделю,обязательно решить 1 варианта в
-            неделю)</p></h3>
-        <h3><p><input name="dzen" type="radio" value="olimpiada">Подготовка с улубленным изучением(4 раза в неделю с
-            олимпиадными задачами, обязательно прешить 2 варианта в неделю)</p></h3>
+    <form action="/">
+        <h3>{{ form }}</h3>
         <p><input type="submit" class="tests" value="Выбрать"></p>
     </form>
 {% endblock content %}

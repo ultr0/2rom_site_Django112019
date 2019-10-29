@@ -6,6 +6,20 @@ from django.contrib.auth.models import AbstractUser
 
 from datetime import date
 
+# режимы, которые заранее прописаны для выбора пользователем. Первое значение хранится в БД, второе отображется пользователю
+TYPE_MODE = (
+    ('intensive', 'Интенсивная (4 раза в неделю,обязательно решить 2 вариант в неделю )'),
+    ('middle', 'Средняя(2 раза в неделю,обязательно решить 1 варианта в неделю)'),
+    ('olimpiada', 'Подготовка с улубленным изучением(4 раза в неделю с олимпиадными задачами, обязательно прешить 2 варианта в неделю)'),
+)
+
+TYPE_MOTIVATION =(
+    ('low', 'Старайся больше, тестов сделано мало'),
+    ('normal', 'Вы выполнили норму'),
+    ('over', 'Вы выполнили больше нормы! Так держать!'),
+)
+
+
 class BaseModel(models.Model):
     #created_time = models.DateTimeField(auto_now_add=True)
     #modified_time = models.DateTimeField(auto_now=True)
@@ -123,6 +137,14 @@ class Journal(BaseModel):
         else:
             answer = 'Неверно'
         return answer
+
+class Mode(BaseModel):
+    """
+    Сущность (таблица) для режима подготовки
+    """
+    #  режим определяется в списке, разарнее установленном
+    mode = models.CharField(verbose_name="Выбор режима", choices=TYPE_MODE, max_length=30, default=TYPE_MODE[0][0])
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 

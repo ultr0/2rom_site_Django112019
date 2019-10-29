@@ -234,6 +234,7 @@ body {background:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7bfe3d
             <b>Личный кабинет </b>
             {% if user.is_authenticated %}
             <p>Добрый день, {{user.get_username}}!
+                <h3>{{ motivation }}</h3>
             <ul class="sidebar-nav">
                 <li> <a href = "{% url 'profile'%}" > Мой профиль </a> </li>
                 <li> <a href = "{% url 'mode'%}" > Режим подготовки </a> </li>

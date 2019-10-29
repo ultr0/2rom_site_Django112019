@@ -6,7 +6,58 @@
 # from app import models
 # from app.enums import AnswerTypeChoices
 #
-#
+import datetime
+
+from django.utils import timezone
+
+from oge2020.models import Journal, Mode, TYPE_MODE, TYPE_MOTIVATION
+
+
+def how_much_session(journal):
+    sessions_id = []
+    for record in journal:
+        sessions_id.append(record.session_id)
+    sessions_id = list(dict.fromkeys(sessions_id))
+    return sessions_id
+
+
+def motivation(request):
+    """
+    функция для мотивации пользователя
+    :return:
+    """
+    mode = Mode.objects.filter(user=request.user).first()
+
+    # расчёт активностей за неделю
+    journal = Journal.objects.filter(user=request.user,
+                                     created_date__range=[timezone.now() - datetime.timedelta(days=7),
+                                                          timezone.now()]).all()
+    samples = len(how_much_session(journal))
+    if mode.mode == TYPE_MODE[0][0]:
+        if samples == 4:
+            text = TYPE_MOTIVATION[1][1]
+        elif samples > 4:
+            text = TYPE_MOTIVATION[2][1]
+        else:
+            text = TYPE_MOTIVATION[0][1]
+
+    elif mode.mode == TYPE_MODE[1][0]:
+        if samples == 2:
+            text = TYPE_MOTIVATION[1][1]
+        elif samples > 2:
+            text = TYPE_MOTIVATION[2][1]
+        else:
+            text = TYPE_MOTIVATION[0][1]
+    else:
+        if samples == 4:
+            text = TYPE_MOTIVATION[1][1]
+        elif samples > 4:
+            text = TYPE_MOTIVATION[2][1]
+        else:
+            text = TYPE_MOTIVATION[0][1]
+
+    return text
+
 # # перемешивание с возвратом iterable
 # def shuffle(iterable):
 #     a = iterable

@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views import generic
+
+from oge2020.helpers import motivation
 from .forms import profileForm, EduMode
 from django.http import JsonResponse
 
@@ -70,7 +72,13 @@ def mode(request):
     :return:
     """
     if request.method == "GET":
-        form = EduMode()
+        message = motivation(request)
+        # проверяем, есть ли уже настройка интенсивности, если нет, то значение по умолчению - иначе предыдущее значение
+        if len(Mode.objects.filter(user=request.user)) == 0:
+            form = EduMode()
+        else:
+            config = Mode.objects.filter(user=request.user).first()
+            form = EduMode(initial={'mode': config.mode})
     elif request.method == "POST":
         form = EduMode(request.POST or None)
         if form.is_valid():
@@ -79,19 +87,19 @@ def mode(request):
             if len(Mode.objects.filter(user=request.user)) == 0:
                 f.save(form.cleaned_data)
             else:
-                config = Mode.objects.filter(user=request.user).first
+                # проверяем, есть ли уже настройка интенсивности, изменяем предыдущую
+                config = Mode.objects.filter(user=request.user).first()
                 config.mode = f.mode
                 config.save()
 
-
-
-    return render(request, 'oge2020/mode.html', {'form':form})
+    return render(request, 'oge2020/mode.html', {'form':form, 'motivation':message})
 
 def mystatistics(request):
     journal_theme_array = []
     journal_variant_array = []
     progress_in_themes_array = []
     if request.method == "GET":
+        message = motivation(request)
         themes = Theme.objects.all()
         variants = Variant.objects.all()
         journal = Journal.objects.filter(user=request.user).all()
@@ -139,6 +147,7 @@ def mystatistics(request):
 
     return render(request, "oge2020/mystatistics.html", {
         'journal': journal,
+        'motivation': message,
         'journal_theme':journal_theme_array,
         'journal_variant':journal_variant_array,})
 
@@ -184,6 +193,7 @@ def bank(request):
 def statistics(request):
     data = []
     if request.method == "GET":
+        message = motivation(request)
 
         users = User.objects.all()
         themes = Theme.objects.all()
@@ -204,11 +214,10 @@ def statistics(request):
             user_dict = dict(user=user, correct=len(correct), incorrect=len(incorrect))
             data.append(user_dict)
 
-
-
-
-
-    return render(request, "oge2020/statistics.html", {'data':data})
+    return render(request, "oge2020/statistics.html", {
+        'data':data,
+        'motivation': message,
+    })
 
     
 def allstatistics(request):

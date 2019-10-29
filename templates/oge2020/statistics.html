@@ -73,24 +73,23 @@
 {% block content %}
     <p>
     <p>
-    <p> Общая статистика пользователей пока недоступна.</p>
 
-    <!--
-    <hr>
-    <a style="position:absolute; left:30%"  href ="/allstatistics.html"> <input class="tests" type="button" value="Общая статистика"  > </a>
-    <div class="arrow-7" style="position:absolute; left:38.5%; top:45%">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <h3 style="position:absolute; left:28%; top:60%" >Здесь находится общая статистика</h3>
-    <a style="position:absolute; right:14%"  href ="/mystatistics.html"> <input class="tests" type="button" value="Моя статистика"  > </a>
-    <div class="arrow-7" style="position:absolute; left:78%; top:45%">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <h3 style="position:absolute; left:68%; top:60%" >Здесь находится ваша личная статистика</h3>
-    --->
+    <table>
+        <tr>
+            <th>Пользователь</th>
+            <th>Количество правильных ответов</th>
+            <th>Количество неправильных ответов</th>
+        </tr>
+        {% for dat in data %}
+        <tr>
+            <td>{{ dat.user }}</td>
+            <td>{{ dat.correct }}</td>
+            <td>{{ dat.incorrect }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
 
 {% endblock content %}

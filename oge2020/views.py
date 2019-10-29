@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from hashlib import  md5
 from django.contrib import messages
@@ -66,11 +67,34 @@ def mode(request):
     return render(request, 'oge2020/mode.html')
 
 def mystatistics(request):
-    journal_array = []
+    journal_theme_array = []
+    journal_variant_array = []
     progress_in_themes_array = []
     if request.method == "GET":
         themes = Theme.objects.all()
-        journal = Journal.objects.filter(user=request.user)
+        variants = Variant.objects.all()
+        journal = Journal.objects.filter(user=request.user).all()
+
+        for variant in variants:
+            questions = Question.objects.filter(theme_number=variant)
+            correct, incorrect = 0, 0
+            question_array = []
+            for question in questions:
+                if question.variant_number == variant:
+                    records_array = []
+                    for record in journal:
+                        if record.question.variant_number == variant:
+                            if record.question == question:
+                                if record.correct == True:
+                                    correct += 1
+                                else:
+                                    incorrect += 1
+                                records_array.append(record)
+                    question_array.append(records_array)
+            progress_in_themes_array.append([correct, incorrect])
+            variant_dict = dict(name=(variant.name + ' №' + str(variant.number)), questions=question_array, correct=correct,
+                              incorrect=incorrect)
+            journal_variant_array.append(variant_dict)
 
         for theme in themes:
             questions = Question.objects.filter(theme_number=theme)
@@ -90,18 +114,12 @@ def mystatistics(request):
                     question_array.append(records_array)
             progress_in_themes_array.append([correct, incorrect])
             theme_dict = dict(name=(theme.name+' №'+str(theme.number)), questions=question_array, correct=correct, incorrect=incorrect)
-            journal_array.append(theme_dict)
+            journal_theme_array.append(theme_dict)
 
-
-
-
-        one_1 = journal[0]
-        # one = journal[0].timestamp
-        # journal_day = Journal.objects.filter()
-        # journal_week = Journal.objects.filter()
-        # journal_month = Journal.objects.filter()
-        # journal_alltime = Journal.objects.filter()
-    return render(request, "oge2020/mystatistics.html", {'journal_data':journal_array, 'correct_data':progress_in_themes_array})
+    return render(request, "oge2020/mystatistics.html", {
+        'journal': journal,
+        'journal_theme':journal_theme_array,
+        'journal_variant':journal_variant_array,})
 
 #################################################################################################
 #################################################################################################
@@ -143,7 +161,33 @@ def bank(request):
     return render(request, "oge2020/bank.html")
 
 def statistics(request):
-    return render(request, "oge2020/statistics.html")
+    data = []
+    if request.method == "GET":
+
+        users = User.objects.all()
+        themes = Theme.objects.all()
+        variants = Variant.objects.all()
+
+        for user in users:
+            sessions = [0]
+            journal = Journal.objects.filter(user=user).all()
+            correct = Journal.objects.filter(user=user, correct=True).all()
+            incorrect = Journal.objects.filter(user=user, correct=False).all()
+            for record in journal:
+                session_id = record.session_id
+                for session in sessions:
+                    if session_id != session:
+                        sessions.append(session_id)
+            value_session = len(sessions)
+            print(value_session)
+            user_dict = dict(user=user, correct=len(correct), incorrect=len(incorrect))
+            data.append(user_dict)
+
+
+
+
+
+    return render(request, "oge2020/statistics.html", {'data':data})
 
     
 def allstatistics(request):

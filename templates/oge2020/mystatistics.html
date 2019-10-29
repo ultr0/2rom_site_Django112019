@@ -63,7 +63,10 @@
 
     </table>
 
-    <p> Таблица со статистикой обучения</p>
+    <h3> Таблица со статистикой обучения по темам</h3>
+
+
+    <h3> Таблица со статистикой обучения по вариантам</h3>
 
     <table>
         <tr>
@@ -73,21 +76,16 @@
             <th>Дата</th>
         </tr>
         {% for theme in journal_data %}
-            {{ theme }}
-            {{ correct_data.0.0 }}{{ forloop.counter0 }}
-            {#            {% for name, questions, correct, incorrect in theme.items %}#}
-            {#                {{ questions }}#}
-            {#            {% endfor %}#}
+
             <tr>
                 <td>{{ theme.name }}</td>
                 <td>{{ theme.correct }}</td>
                 <td>{{ theme.incorrect }}</td>
-                <td>{{ record.created_date.date }}</td>
+                <td>{{ theme.questions.1.created_date.date }}</td>
             </tr>
             {% for question in theme.questions %}
 
                 {% for record in question %}
-                    {#                {% forloop.parentloop %}#}
 
                     <tr>
                         <td>{{ record.question.question_text }}</td>

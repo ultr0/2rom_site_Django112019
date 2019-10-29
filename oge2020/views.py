@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views import generic
 
-from oge2020.helpers import motivation
+from oge2020.helpers import motivation, how_much_session
 from .forms import profileForm, EduMode
 from django.http import JsonResponse
 
@@ -200,17 +200,11 @@ def statistics(request):
         variants = Variant.objects.all()
 
         for user in users:
-            sessions = [0]
             journal = Journal.objects.filter(user=user).all()
             correct = Journal.objects.filter(user=user, correct=True).all()
             incorrect = Journal.objects.filter(user=user, correct=False).all()
-            for record in journal:
-                session_id = record.session_id
-                for session in sessions:
-                    if session_id != session:
-                        sessions.append(session_id)
-            value_session = len(sessions)
-            print(value_session)
+
+            value_session = how_much_session(journal)
             user_dict = dict(user=user, correct=len(correct), incorrect=len(incorrect))
             data.append(user_dict)
 

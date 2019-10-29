@@ -44,6 +44,8 @@ class Theme(BaseModel):
     # info
     author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
 
+    def __str__(self):
+        return '{} №{}'.format(self.name, self.number)
 
 #################################################################################################
 #################################################################################################
@@ -53,6 +55,9 @@ class Exercise(BaseModel):
     number = models.IntegerField("Номер задания", blank=True, null=True, default=None)
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return '{} №{}'.format(self.name, self.number)
 
 # class ExerciseResult(BaseModel):
     # ex_number       = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='questions', verbose_name='Question')
@@ -74,6 +79,9 @@ class Variant(models.Model):
        self.published_date = timezone.now()
        self.save()
 
+    def __str__(self):
+        return '{} №{}'.format(self.name, self.number)
+
 
 class Question(BaseModel):
     theme_number    = models.ForeignKey(Theme, on_delete=models.CASCADE, related_name='test_questions', verbose_name='Тема')
@@ -90,18 +98,31 @@ class Question(BaseModel):
     picture4 = models.ImageField(verbose_name='Изображение 4', null=True, blank=True)
     picture5 = models.ImageField(verbose_name='Изображение 5', null=True, blank=True)
 
+    def __str__(self):
+        return '{}'.format(self.question_text)
 
 class Journal(BaseModel):
     """
     Сущность (таблица) для журналирования ответов на вопросы от пользователей
     """
-    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Время ответа')
+    # timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Время ответа')
     question  = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Вопрос')
     correct = models.BooleanField(verbose_name='Верный ответ', default=False)
     answer = models.TextField(verbose_name='Ответ', null=True, blank=True)
     answer_document = models.FileField(verbose_name='Документ для проверки', null=True, blank=True)
+    session_id = models.TextField(verbose_name='Индивидуальный номер для объединения результатов тестирования')
     number_questions_in_variant = models.IntegerField(verbose_name='Количество всех вопросов в варианте на момент сдачи')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return 'Ответ {} на вопрос {}'.format(self.user, self.question)
+
+    def is_correct(self):
+        if self.correct == True:
+            answer = 'Верно'
+        else:
+            answer = 'Неверно'
+        return answer
 
 
 

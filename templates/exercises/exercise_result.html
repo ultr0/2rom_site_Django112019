@@ -33,15 +33,26 @@
 
 {% block content %}
 
+    {% if error %}
+       <p> {{ error }}</p>
+    {% else %}
     <p> Вы решили все задачи упражнения!!!
-
+        <br>
         Вот Ваши результаты теста:
+        Верно {{ correct }} из {{ results|length }}
         <br>
-        Номер упражнения: {{ obj.ex_id }}
+        {% for result in results %}
+            <br>
+            Номер упражнения: {{ result.question }}
+            <br>
+            Ваш Ответ: {{ result.answer }}
+            <br>
+            Правильность: {{ result.is_correct }}
+            <br><br>
+        {% endfor %}
         <br>
-        Ваш Ответ: {{ object.answ }}
-        <br>
-        Ваше имя: {{ object.student_name }}
+        Ваше имя: {{ request.user }}
+    {% endif %}
 
 
 

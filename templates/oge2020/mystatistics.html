@@ -40,6 +40,67 @@
 
 {% block content %}
 
-    <p> Таблица со статистикой обучения
+    <p> Таблица со статистикой обучения</p>
+
+
+    <table>
+        <tr>
+            <th>Вариант</th>
+            <th>Вопрос</th>
+            <th>Ответ</th>
+            <th>Правильность</th>
+            <th>Дата</th>
+        </tr>
+        {% for record in journal %}
+            <tr>
+                <td>{{ record.question.variant_number.name }} №{{ record.question.variant_number.number }}</td>
+                <td>{{ record.question.question_text }}</td>
+                <td>{{ record.answer }}</td>
+                <td>{{ record.correct }}</td>
+                <td>{{ record.created_date.date }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <p> Таблица со статистикой обучения</p>
+
+    <table>
+        <tr>
+            <th>Задание</th>
+            <th>Количество правильных</th>
+            <th>Количество непаравильных</th>
+            <th>Дата</th>
+        </tr>
+        {% for theme in journal_data %}
+            {{ theme }}
+            {{ correct_data.0.0 }}{{ forloop.counter0 }}
+            {#            {% for name, questions, correct, incorrect in theme.items %}#}
+            {#                {{ questions }}#}
+            {#            {% endfor %}#}
+            <tr>
+                <td>{{ theme.name }}</td>
+                <td>{{ theme.correct }}</td>
+                <td>{{ theme.incorrect }}</td>
+                <td>{{ record.created_date.date }}</td>
+            </tr>
+            {% for question in theme.questions %}
+
+                {% for record in question %}
+                    {#                {% forloop.parentloop %}#}
+
+                    <tr>
+                        <td>{{ record.question.question_text }}</td>
+                        <td>{{ record.question.question_text }}</td>
+                        <td>{{ record.question.question_text }}</td>
+                        <td>{{ record.created_date.date }}</td>
+
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+
+    </table>
+
 
 {% endblock content %}

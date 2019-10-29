@@ -38,46 +38,47 @@
         <br>
         <br>
 
-
-        <!--
-        <p><label for="id_message">Message:</label>
-            <input type="text" name="message" id="id_message" /></p>
-        <p><label for="id_sender">Sender:</label>
-            <input type="text" name="sender" id="id_sender" /></p>
-        <p><label for="id_cc_myself">Cc myself:</label>
-            <input type="checkbox" name="cc_myself" id="id_cc_myself" /></p>
-        --->
-
-
-
         {% if question_list %}
-
-            <form action="../exercise_result/" method="post">
+            {#форма обладает enctype="multipart/form-data" для загрузки файлов#}
+            <form action="../exercise_result/" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <ul>
-
                     {% for test in question_list %}
-
                         <li>
                             <b>Вопрос: </b> {{ test.question_text }}
                             <br>
+                            {% if test.picture1 %}
+                                <img src="/media/{{ test.picture1 }}" alt="{{ test.picture1 }}"/>
+                            {% endif %}
+                            {% if test.picture2 %}
+                                <img src="/media/{{ test.picture2 }}" alt="{{ test.picture2 }}"/>
+                            {% endif %}
+                            {% if test.picture3 %}
+                                <img src="/media/{{ test.picture3 }}" alt="{{ test.picture3 }}"/>
+                            {% endif %}
+                            {% if test.picture4 %}
+                                <img src="/media/{{ test.picture4 }}" alt="{{ test.picture4 }}"/>
+                            {% endif %}
+                            {% if test.picture5 %}
+                                <img src="/media/{{ test.picture5 }}" alt="{{ test.picture5 }}"/>
+                            {% endif %}
 
-                        <p><label for="id_answer"><b>Ваш ответ: </b></label>
-                            <input id="id_answer" type="text" name="answer" maxlength="100"/></p>
+                        <p><label for="id_answer-{{ test.id }}"><b>Ваш ответ: </b></label>
+                            <textarea name="answer-{{ test.id }}" cols="40" rows="2" id="id_answer-{{ test.id }}"
+                                      required></textarea></p>
 
+                        {% if test.question_type == 3 %}
 
-
-
-
+                            <label for="answer_document-{{ test.id }}">Документ для проверки:</label>
+                            <input type="file" name="answer_document-{{ test.id }}"
+                                   id="id_answer_document-{{ test.id }}" required>
+                        {% endif %}
                         </li>
                         <li>
-
                         <hr>
-
                     {% endfor %}
-
             </ul>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Ответить"/>
             </form>
 
         {% else %}

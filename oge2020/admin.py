@@ -13,6 +13,9 @@ admin.site.register(Question)
 from .models import Variant
 admin.site.register(Variant)
 
+from .models import Journal
+admin.site.register(Journal)
+
 #from .models import ExerciseResult
 #admin.site.register(ExerciseResult)
 

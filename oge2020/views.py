@@ -1,14 +1,14 @@
+import datetime
+
 from django.shortcuts import render
+from hashlib import  md5
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views import generic
-from .forms import UserForm
 from .forms import profileForm
-from .forms import MyForm
-from .forms import ReplyForm
 from django.http import JsonResponse
 
 
@@ -16,14 +16,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import FormView
 
 #from .models import Zadania
-from .models import Theme
+from .models import Theme, Journal
 from .models import Variant
 from .models import Exercise
 from .models import Question
 #from .models import ExerciseResult
 #from .models import Analysis
 
-from oge2020 import forms as helpers, models
+# from oge2020 import forms as helpers, models
 
 
 
@@ -66,7 +66,42 @@ def mode(request):
     return render(request, 'oge2020/mode.html')
 
 def mystatistics(request):
-    return render(request, "oge2020/mystatistics.html")
+    journal_array = []
+    progress_in_themes_array = []
+    if request.method == "GET":
+        themes = Theme.objects.all()
+        journal = Journal.objects.filter(user=request.user)
+
+        for theme in themes:
+            questions = Question.objects.filter(theme_number=theme)
+            correct, incorrect = 0, 0
+            question_array = []
+            for question in questions:
+                if question.theme_number == theme:
+                    records_array = []
+                    for record in  journal:
+                        if record.question.theme_number == theme:
+                            if record.question == question:
+                                if record.correct == True:
+                                    correct+=1
+                                else:
+                                    incorrect+=1
+                                records_array.append(record)
+                    question_array.append(records_array)
+            progress_in_themes_array.append([correct, incorrect])
+            theme_dict = dict(name=(theme.name+' №'+str(theme.number)), questions=question_array, correct=correct, incorrect=incorrect)
+            journal_array.append(theme_dict)
+
+
+
+
+        one_1 = journal[0]
+        # one = journal[0].timestamp
+        # journal_day = Journal.objects.filter()
+        # journal_week = Journal.objects.filter()
+        # journal_month = Journal.objects.filter()
+        # journal_alltime = Journal.objects.filter()
+    return render(request, "oge2020/mystatistics.html", {'journal_data':journal_array, 'correct_data':progress_in_themes_array})
 
 #################################################################################################
 #################################################################################################
@@ -148,81 +183,17 @@ class ExerciseListView(generic.ListView):
 class ExerciseDetailView(generic.DetailView):
     model = Exercise
     template_name = 'exercises/exercise-detail.html'
-    #queryset = Exercise.objects.all()
-    #queryset = Question.objects.filter(exercise_number=id)
-    #queryset = Question.objects.all()    
-    
-    
-    # ваше собственное имя переменной контекста в шаблоне
-    #queryset = Book.objects.filter(title__icontains='war')[:5] # Получение 5 книг, содержащих слово 'war' в заголовке
-    #template_name = 'books/my_arbitrary_template_name_list.html'
+
     
     def get_context_data(self, **kwargs):
-        # xxx will be available in the template as the related objects
+        #
         context = super(ExerciseDetailView, self).get_context_data(**kwargs)
         context['exercise_object'] = Exercise.objects.get(id=self.kwargs.get('pk'))
         context['question_list'] = Question.objects.filter(exercise_number=self.kwargs.get('pk'))   #all()
-        context['form'] = ReplyForm
-        #AnotherModel.objects.filter(var=self.get_object())
         return context
         
     def post(self, request, *args, **kwargs):
-        HttpResponse('This is POST request!')
- 
- 
-    def post(self, request, *args, **kwargs):
-        form = ReplyForm(request.POST)
-        
-        print >>sys.stderr, 'POST Method start!'
-        
-        if form.is_valid():
-            # reply = form.save(commit=False)
-            # reply.creator = request.user
-            # reply.question = self.get_object()
-            # reply.save()
-            
-            #answer = form.cleaned_data['answer']
-            #message = form.cleaned_data['message']
-            #sender = form.cleaned_data['sender']
-            #cc_myself = form.cleaned_data['cc_myself']
-            
-            self.object = self.get_object()
-            answer = request.POST['answer']
-            creator = request.user
-            
-            #fort = Family(names = n, age = a, vid = v)
-            #fort.save()
-            
-            #if request.method=='POST' and 'btnform2' in request.POST:
-            #pk = request.POST.get('address_pk', 0)
-
-            messages.info(request, f'Набрано баллов за тестовую часть!')
-
-            
-            context = super(ExerciseDetailView, self).get_context_data(**kwargs)
-            ex_id = self.kwargs.get('pk')
-            #result = ExerciseResult(ex_number=ex_id, author = creator, checked=555)
-            #result.save()
-            #context['form'] = ReplyForm
-            context['ex_id'] = ex_id
-            #context['answ'] = form.cleaned_data['answer']
-            #context['student_name'] = creator
-            
-            #if 'btnform1' in request.POST:
-                #context['answer'] = request.POST['answer']
-            #return JsonResponse({"devices": devices})
-            return render(request, 'test_page.html', {'obj': context})
-
-            #self.render_to_response('exercises/exercise-result.html', context=context)
-
-        else:
-            messages.info(request, f'Ветка 2!')
-            self.object = self.get_object()
-            context = super(ExerciseDetailView, self).get_context_data(**kwargs)
-            context['form'] = form
-            context['ex_id'] = ex_id
-            return render(request, 'test_page.html', {'obj': context})
-            #return self.render_to_response('exercises/exercise-result.html', context=context)    
+        return None
         
         
 
@@ -311,7 +282,44 @@ def enter(request):
     return render(request, "oge2020/enter.html")
 
 def exersice_result(request):
-    return render(request, "exercises/exercise_result.html")
+    """
+    Функция обработки POST запроса в ручную без использования DjangoForm
+    :param request:
+    :return:
+    """
+    # создаём уникальный идетификатор, для последующего показа пользователю результата
+    session_id = md5(str(datetime.datetime.now()).encode('utf-8')).hexdigest()
+    error = None
+    if request.POST:
+       for data in request.POST:
+           if data != 'csrfmiddlewaretoken': # исключаем ключ проверки формы
+               doc = None
+               correct = False
+               answer = request.POST[data]  # выбираем ответ по ключу
+               id_question = data.split('-')[1] # дробим имя для вычленения ID вопроса, который был задан в шаблоне
+               question = Question.objects.filter(id=id_question).first()
+               if answer == question.question_answer:
+                    correct =True
+               number_questions_in_variant = len(Question.objects.filter(variant_number=question.variant_number))
+               if request.FILES:
+                   for file in request.FILES:
+                       if id_question == file.split('-')[1]:
+                           doc = request.FILES[file]
+               Journal.objects.create(question=question, correct=correct, answer=answer, answer_document=doc,
+                                      session_id=session_id, number_questions_in_variant=number_questions_in_variant,
+                                      user=request.user )
+
+    else:
+        error = "Решите задания, чтобы потом узнать результат."
+
+    results = Journal.objects.filter(session_id=session_id).all()
+    correct = len(Journal.objects.filter(session_id=session_id, correct=True))
+
+    return render(request, "exercises/exercise_result.html", {
+        'error': error,
+        'results': results,
+        'correct': correct,
+                                                              })
 
     
 # def register(request):
